@@ -1,24 +1,56 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { FiAlignJustify } from "react-icons/fi";
 import Home from './Pages/Home';
 import About from './Pages/About';
-import './App.css'; // App.css 파일을 import
+import './App.css';
+import Login from './Pages/Login';
+import CreateId from './Pages/CreateId';
 
-const logo='https://firebasestorage.googleapis.com/v0/b/capstone-ac206.appspot.com/o/%EC%9B%B9%ED%99%88%EB%9D%BC%EB%B2%A8.jpg?alt=media&token=63425a12-b57b-4035-aa33-f5b11a2f5067'
+const logo = 'https://firebasestorage.googleapis.com/v0/b/capstone-ac206.appspot.com/o/%EC%9B%B9%ED%99%88%EB%9D%BC%EB%B2%A8.jpg?alt=media&token=63425a12-b57b-4035-aa33-f5b11a2f5067'
 
-//여기에 네비게이션 추가.
-const App = () => (
-  <div>
-    <div className="header">
-      <Link to="/"><img src={logo} alt="Logo" /></Link>
-      <div className="right-align">
-        <span>로그인</span>
-        <span>회원가입</span>
+const App = () => {
+  const userEmail = localStorage.getItem('userEmail');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('userEmail');
+    alert('로그아웃 되었습니다.');
+    navigate("/");
+  };
+
+  return (
+    <div>
+      <div className="header">
+        <Link to="/"><img src={logo} alt="Logo" /></Link>
+        <div className="right-align">
+          {userEmail ? (
+            <>
+              <span>{userEmail}님 환영합니다. </span>
+              <button className="white-background-button" onClick={handleLogout}>
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="white-background-button">
+                로그인
+              </Link>
+              <Link to="/createId" className="white-background-button">
+                회원가입
+              </Link>
+            </>
+          )}
+          <FiAlignJustify style={{ fontSize: '2rem' }} />
+        </div>
       </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/createId" element={<CreateId />} />
+      </Routes>
     </div>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-    </Routes>
-  </div>
-)
+  )
+}
+
 export default App;

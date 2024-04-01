@@ -89,8 +89,8 @@ const Home = () => (
             <div className="menu">
                 <div className="item">미디어</div>
                 <div className="menu-content">
-                    <div className="sub-item"><Link to="about">역사이야기</Link></div>
-                    <div className="sub-item">즐겨찾는 영상</div>
+                    <div className="sub-item"><Link to="historyTales">역사이야기</Link></div>
+                    <div className="sub-item"><Link to="likedVideos">즐겨찾는 영상</Link></div>
                     <div className="sub-item">게임</div>
                     <div className="sub-item">용어사전</div>
                 </div>

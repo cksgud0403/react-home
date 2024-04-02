@@ -5,6 +5,8 @@ import About from './Pages/About';
 import './App.css';
 import Login from './Pages/Login';
 import CreateId from './Pages/CreateId';
+import HistoryTalesScreen from './Pages/HistoryTalesScreen';
+import LikedVideosScreen from './Pages/LikedVideosScreen'
 
 const logo = 'https://firebasestorage.googleapis.com/v0/b/capstone-ac206.appspot.com/o/%EC%9B%B9%ED%99%88%EB%9D%BC%EB%B2%A8.jpg?alt=media&token=63425a12-b57b-4035-aa33-f5b11a2f5067'
 
@@ -48,6 +50,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/createId" element={<CreateId />} />
+        <Route path="/historyTales" element={<HistoryTalesScreen userEmail={userEmail} />} />
+        <Route path="/likedVideos" element={<LikedVideosScreen userEmail={userEmail} />} />
       </Routes>
     </div>
   )
